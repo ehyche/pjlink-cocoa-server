@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD590DEA173B567600D8EC2C /* PJProjector.m in Sources */ = {isa = PBXBuildFile; fileRef = FD590DE9173B567600D8EC2C /* PJProjector.m */; };
 		FD87C230173A06AC0087A6AE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD87C22F173A06AC0087A6AE /* Cocoa.framework */; };
 		FD87C23A173A06AC0087A6AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD87C238173A06AC0087A6AE /* InfoPlist.strings */; };
 		FD87C23C173A06AC0087A6AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD87C23B173A06AC0087A6AE /* main.m */; };
 		FD87C240173A06AC0087A6AE /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = FD87C23E173A06AC0087A6AE /* Credits.rtf */; };
 		FD87C243173A06AC0087A6AE /* PJAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD87C242173A06AC0087A6AE /* PJAppDelegate.m */; };
 		FD87C246173A06AC0087A6AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD87C244173A06AC0087A6AE /* MainMenu.xib */; };
+		FD8E4BBF173DF7610087BF17 /* PJLinkServer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8E4BBE173DF7610087BF17 /* PJLinkServer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD590DE8173B567600D8EC2C /* PJProjector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJProjector.h; sourceTree = "<group>"; };
+		FD590DE9173B567600D8EC2C /* PJProjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJProjector.m; sourceTree = "<group>"; };
 		FD87C22C173A06AC0087A6AE /* PJLinkCocoaServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PJLinkCocoaServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD87C22F173A06AC0087A6AE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FD87C232173A06AC0087A6AE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -29,6 +33,8 @@
 		FD87C241173A06AC0087A6AE /* PJAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PJAppDelegate.h; sourceTree = "<group>"; };
 		FD87C242173A06AC0087A6AE /* PJAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PJAppDelegate.m; sourceTree = "<group>"; };
 		FD87C245173A06AC0087A6AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		FD8E4BBD173DF7610087BF17 /* PJLinkServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJLinkServer.h; sourceTree = "<group>"; };
+		FD8E4BBE173DF7610087BF17 /* PJLinkServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJLinkServer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,9 +88,13 @@
 		FD87C235173A06AC0087A6AE /* PJLinkCocoaServer */ = {
 			isa = PBXGroup;
 			children = (
+				FD8E4BBD173DF7610087BF17 /* PJLinkServer.h */,
+				FD8E4BBE173DF7610087BF17 /* PJLinkServer.m */,
 				FD87C241173A06AC0087A6AE /* PJAppDelegate.h */,
 				FD87C242173A06AC0087A6AE /* PJAppDelegate.m */,
 				FD87C244173A06AC0087A6AE /* MainMenu.xib */,
+				FD590DE8173B567600D8EC2C /* PJProjector.h */,
+				FD590DE9173B567600D8EC2C /* PJProjector.m */,
 				FD87C236173A06AC0087A6AE /* Supporting Files */,
 			);
 			path = PJLinkCocoaServer;
@@ -169,6 +179,8 @@
 			files = (
 				FD87C23C173A06AC0087A6AE /* main.m in Sources */,
 				FD87C243173A06AC0087A6AE /* PJAppDelegate.m in Sources */,
+				FD590DEA173B567600D8EC2C /* PJProjector.m in Sources */,
+				FD8E4BBF173DF7610087BF17 /* PJLinkServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +316,7 @@
 				FD87C24B173A06AC0087A6AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
