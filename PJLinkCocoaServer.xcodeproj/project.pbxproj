@@ -83,7 +83,6 @@
 		FD87C223173A06AC0087A6AE = {
 			isa = PBXGroup;
 			children = (
-				FDA0C08D1748892800D4CE53 /* Security.framework */,
 				FD87C235173A06AC0087A6AE /* PJLinkCocoaServer */,
 				FD87C22E173A06AC0087A6AE /* Frameworks */,
 				FD87C22D173A06AC0087A6AE /* Products */,
@@ -101,6 +100,7 @@
 		FD87C22E173A06AC0087A6AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FDA0C08D1748892800D4CE53 /* Security.framework */,
 				FD87C22F173A06AC0087A6AE /* Cocoa.framework */,
 				FD87C231173A06AC0087A6AE /* Other Frameworks */,
 			);
