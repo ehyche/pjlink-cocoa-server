@@ -15,6 +15,16 @@
 		FD87C243173A06AC0087A6AE /* PJAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD87C242173A06AC0087A6AE /* PJAppDelegate.m */; };
 		FD87C246173A06AC0087A6AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD87C244173A06AC0087A6AE /* MainMenu.xib */; };
 		FD8E4BBF173DF7610087BF17 /* PJLinkServer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8E4BBE173DF7610087BF17 /* PJLinkServer.m */; };
+		FD8E4BC4173E02B50087BF17 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8E4BC3173E02B50087BF17 /* GCDAsyncSocket.m */; };
+		FD8E4BC8173E0A670087BF17 /* PJLinkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8E4BC7173E0A670087BF17 /* PJLinkConnection.m */; };
+		FD8E4BCB173E0F420087BF17 /* PJLinkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8E4BCA173E0F420087BF17 /* PJLinkConfig.m */; };
+		FDA0C0881748878400D4CE53 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0C07F1748878400D4CE53 /* DDAbstractDatabaseLogger.m */; };
+		FDA0C0891748878400D4CE53 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0C0811748878400D4CE53 /* DDASLLogger.m */; };
+		FDA0C08A1748878400D4CE53 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0C0831748878400D4CE53 /* DDFileLogger.m */; };
+		FDA0C08B1748878400D4CE53 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0C0851748878400D4CE53 /* DDLog.m */; };
+		FDA0C08C1748878400D4CE53 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0C0871748878400D4CE53 /* DDTTYLogger.m */; };
+		FDA0C08E1748892800D4CE53 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDA0C08D1748892800D4CE53 /* Security.framework */; };
+		FDEC1D061745BA750014B3BA /* PJLampStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEC1D051745BA750014B3BA /* PJLampStatus.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +45,26 @@
 		FD87C245173A06AC0087A6AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		FD8E4BBD173DF7610087BF17 /* PJLinkServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJLinkServer.h; sourceTree = "<group>"; };
 		FD8E4BBE173DF7610087BF17 /* PJLinkServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJLinkServer.m; sourceTree = "<group>"; };
+		FD8E4BC2173E02B50087BF17 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = ThirdParty/CocoaAsyncSocket/GCD/GCDAsyncSocket.h; sourceTree = SOURCE_ROOT; };
+		FD8E4BC3173E02B50087BF17 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = ThirdParty/CocoaAsyncSocket/GCD/GCDAsyncSocket.m; sourceTree = SOURCE_ROOT; };
+		FD8E4BC5173E05160087BF17 /* PJLinkLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJLinkLogging.h; sourceTree = "<group>"; };
+		FD8E4BC6173E0A670087BF17 /* PJLinkConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJLinkConnection.h; sourceTree = "<group>"; };
+		FD8E4BC7173E0A670087BF17 /* PJLinkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJLinkConnection.m; sourceTree = "<group>"; };
+		FD8E4BC9173E0F420087BF17 /* PJLinkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJLinkConfig.h; sourceTree = "<group>"; };
+		FD8E4BCA173E0F420087BF17 /* PJLinkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJLinkConfig.m; sourceTree = "<group>"; };
+		FDA0C07E1748878400D4CE53 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAbstractDatabaseLogger.h; path = ThirdParty/CocoaLumberjack/Lumberjack/DDAbstractDatabaseLogger.h; sourceTree = SOURCE_ROOT; };
+		FDA0C07F1748878400D4CE53 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDAbstractDatabaseLogger.m; path = ThirdParty/CocoaLumberjack/Lumberjack/DDAbstractDatabaseLogger.m; sourceTree = SOURCE_ROOT; };
+		FDA0C0801748878400D4CE53 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDASLLogger.h; path = ThirdParty/CocoaLumberjack/Lumberjack/DDASLLogger.h; sourceTree = SOURCE_ROOT; };
+		FDA0C0811748878400D4CE53 /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDASLLogger.m; path = ThirdParty/CocoaLumberjack/Lumberjack/DDASLLogger.m; sourceTree = SOURCE_ROOT; };
+		FDA0C0821748878400D4CE53 /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDFileLogger.h; path = ThirdParty/CocoaLumberjack/Lumberjack/DDFileLogger.h; sourceTree = SOURCE_ROOT; };
+		FDA0C0831748878400D4CE53 /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDFileLogger.m; path = ThirdParty/CocoaLumberjack/Lumberjack/DDFileLogger.m; sourceTree = SOURCE_ROOT; };
+		FDA0C0841748878400D4CE53 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDLog.h; path = ThirdParty/CocoaLumberjack/Lumberjack/DDLog.h; sourceTree = SOURCE_ROOT; };
+		FDA0C0851748878400D4CE53 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDLog.m; path = ThirdParty/CocoaLumberjack/Lumberjack/DDLog.m; sourceTree = SOURCE_ROOT; };
+		FDA0C0861748878400D4CE53 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDTTYLogger.h; path = ThirdParty/CocoaLumberjack/Lumberjack/DDTTYLogger.h; sourceTree = SOURCE_ROOT; };
+		FDA0C0871748878400D4CE53 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDTTYLogger.m; path = ThirdParty/CocoaLumberjack/Lumberjack/DDTTYLogger.m; sourceTree = SOURCE_ROOT; };
+		FDA0C08D1748892800D4CE53 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FDEC1D041745BA750014B3BA /* PJLampStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJLampStatus.h; sourceTree = "<group>"; };
+		FDEC1D051745BA750014B3BA /* PJLampStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJLampStatus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDA0C08E1748892800D4CE53 /* Security.framework in Frameworks */,
 				FD87C230173A06AC0087A6AE /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +83,7 @@
 		FD87C223173A06AC0087A6AE = {
 			isa = PBXGroup;
 			children = (
+				FDA0C08D1748892800D4CE53 /* Security.framework */,
 				FD87C235173A06AC0087A6AE /* PJLinkCocoaServer */,
 				FD87C22E173A06AC0087A6AE /* Frameworks */,
 				FD87C22D173A06AC0087A6AE /* Products */,
@@ -88,6 +120,10 @@
 		FD87C235173A06AC0087A6AE /* PJLinkCocoaServer */ = {
 			isa = PBXGroup;
 			children = (
+				FD8E4BC6173E0A670087BF17 /* PJLinkConnection.h */,
+				FD8E4BC7173E0A670087BF17 /* PJLinkConnection.m */,
+				FD8E4BC5173E05160087BF17 /* PJLinkLogging.h */,
+				FD8E4BC0173E02920087BF17 /* ThirdParty */,
 				FD8E4BBD173DF7610087BF17 /* PJLinkServer.h */,
 				FD8E4BBE173DF7610087BF17 /* PJLinkServer.m */,
 				FD87C241173A06AC0087A6AE /* PJAppDelegate.h */,
@@ -96,6 +132,10 @@
 				FD590DE8173B567600D8EC2C /* PJProjector.h */,
 				FD590DE9173B567600D8EC2C /* PJProjector.m */,
 				FD87C236173A06AC0087A6AE /* Supporting Files */,
+				FD8E4BC9173E0F420087BF17 /* PJLinkConfig.h */,
+				FD8E4BCA173E0F420087BF17 /* PJLinkConfig.m */,
+				FDEC1D041745BA750014B3BA /* PJLampStatus.h */,
+				FDEC1D051745BA750014B3BA /* PJLampStatus.m */,
 			);
 			path = PJLinkCocoaServer;
 			sourceTree = "<group>";
@@ -110,6 +150,41 @@
 				FD87C23E173A06AC0087A6AE /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FD8E4BC0173E02920087BF17 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				FDA0C07D1748876100D4CE53 /* CocoaLumberjack */,
+				FD8E4BC1173E02980087BF17 /* CocoaAsyncSocket */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		FD8E4BC1173E02980087BF17 /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				FD8E4BC2173E02B50087BF17 /* GCDAsyncSocket.h */,
+				FD8E4BC3173E02B50087BF17 /* GCDAsyncSocket.m */,
+			);
+			name = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		FDA0C07D1748876100D4CE53 /* CocoaLumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				FDA0C07E1748878400D4CE53 /* DDAbstractDatabaseLogger.h */,
+				FDA0C07F1748878400D4CE53 /* DDAbstractDatabaseLogger.m */,
+				FDA0C0801748878400D4CE53 /* DDASLLogger.h */,
+				FDA0C0811748878400D4CE53 /* DDASLLogger.m */,
+				FDA0C0821748878400D4CE53 /* DDFileLogger.h */,
+				FDA0C0831748878400D4CE53 /* DDFileLogger.m */,
+				FDA0C0841748878400D4CE53 /* DDLog.h */,
+				FDA0C0851748878400D4CE53 /* DDLog.m */,
+				FDA0C0861748878400D4CE53 /* DDTTYLogger.h */,
+				FDA0C0871748878400D4CE53 /* DDTTYLogger.m */,
+			);
+			name = CocoaLumberjack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +256,15 @@
 				FD87C243173A06AC0087A6AE /* PJAppDelegate.m in Sources */,
 				FD590DEA173B567600D8EC2C /* PJProjector.m in Sources */,
 				FD8E4BBF173DF7610087BF17 /* PJLinkServer.m in Sources */,
+				FD8E4BC4173E02B50087BF17 /* GCDAsyncSocket.m in Sources */,
+				FD8E4BC8173E0A670087BF17 /* PJLinkConnection.m in Sources */,
+				FD8E4BCB173E0F420087BF17 /* PJLinkConfig.m in Sources */,
+				FDEC1D061745BA750014B3BA /* PJLampStatus.m in Sources */,
+				FDA0C0881748878400D4CE53 /* DDAbstractDatabaseLogger.m in Sources */,
+				FDA0C0891748878400D4CE53 /* DDASLLogger.m in Sources */,
+				FDA0C08A1748878400D4CE53 /* DDFileLogger.m in Sources */,
+				FDA0C08B1748878400D4CE53 /* DDLog.m in Sources */,
+				FDA0C08C1748878400D4CE53 /* DDTTYLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

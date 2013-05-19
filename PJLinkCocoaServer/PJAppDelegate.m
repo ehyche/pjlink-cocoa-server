@@ -7,6 +7,16 @@
 //
 
 #import "PJAppDelegate.h"
+#import "PJLinkServer.h"
+
+@interface PJAppDelegate()
+{
+    PJLinkServer* _server;
+}
+
+@property(nonatomic,readonly) PJLinkServer* server;
+
+@end
 
 @implementation PJAppDelegate
 
@@ -119,6 +129,29 @@
 
 - (IBAction)startStopButtonPressed:(id)sender {
     NSLog(@"startStopButtonPressed:%@", sender);
+
+    if (self.server.isRunning) {
+        [self.server stop];
+        self.startStopButton.title = @"Start Server";
+    } else {
+        NSError* startError = nil;
+        BOOL result = [self.server start:&startError];
+        if (result) {
+            self.startStopButton.title = @"Stop Server";
+        } else {
+            NSLog(@"Error starting server = %@", startError);
+        }
+    }
+}
+
+#pragma mark - PJAppDelegate private methods
+
+- (PJLinkServer*) server {
+    if (_server == nil) {
+        _server = [[PJLinkServer alloc] init];
+    }
+
+    return _server;
 }
 
 @end

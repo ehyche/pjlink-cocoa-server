@@ -42,37 +42,39 @@ enum {
     NumPJErrorTypes
 };
 
-const NSInteger kMinInputIndex             = 1;
-const NSInteger kMaxInputIndex             = 9;
-const NSInteger kMinNumberOfLamps          = 1;
-const NSInteger kMaxNumberOfLamps          = 8;
-const NSInteger kMaxProjectorNameLength    = 64;
-const NSInteger kMaxManufacturerNameLength = 32;
-const NSInteger kMaxProductNameLength      = 32;
-const NSInteger kMaxOtherInformationLength = 32;
+NSString* const PJProjectorDidChangeNotification;
 
 @interface PJProjector : NSObject
 
-@property(nonatomic,assign) NSInteger powerStatus;
-@property(nonatomic,assign) NSInteger inputType;
++ (PJProjector*)sharedProjector;
+
+@property(nonatomic,assign) NSUInteger powerStatus;
+@property(nonatomic,assign) NSUInteger numberOfRGBInputs;
+@property(nonatomic,assign) NSUInteger numberOfVideoInputs;
+@property(nonatomic,assign) NSUInteger numberOfDigitalInputs;
+@property(nonatomic,assign) NSUInteger numberOfStorageInputs;
+@property(nonatomic,assign) NSUInteger numberOfNetworkInputs;
+@property(nonatomic,assign) NSUInteger inputType;
+@property(nonatomic,assign) NSUInteger inputNumber;
 @property(nonatomic,assign,getter=isAudioMuted) BOOL audioMuted;
 @property(nonatomic,assign,getter=isVideoMuted) BOOL videoMuted;
-@property(nonatomic,assign) NSInteger numberOfLamps;
+@property(nonatomic,assign) NSUInteger fanError;
+@property(nonatomic,assign) NSUInteger lampError;
+@property(nonatomic,assign) NSUInteger temperatureError;
+@property(nonatomic,assign) NSUInteger coverOpenError;
+@property(nonatomic,assign) NSUInteger filterError;
+@property(nonatomic,assign) NSUInteger otherError;
+@property(nonatomic,assign) NSUInteger numberOfLamps;
+@property(nonatomic,readonly) NSArray* lampStatuses;
 @property(nonatomic,copy) NSString* projectorName;
 @property(nonatomic,copy) NSString* manufacturerName;
 @property(nonatomic,copy) NSString* productName;
 @property(nonatomic,copy) NSString* otherInformation;
 @property(nonatomic,assign) BOOL class2Compatible;
+@property(nonatomic,assign) BOOL usePassword;
+@property(nonatomic,copy) NSString* password;
 
-- (NSInteger)numberOfInputsForType:(NSInteger)type;
-- (void)setNumberOfInputs:(NSInteger)num forType:(NSInteger)type;
-- (NSInteger)activeInputForType:(NSInteger)type;
-- (void)setActiveInput:(NSInteger)num forType:(NSInteger)type;
-- (NSInteger)errorStatusForErrorType:(NSInteger)type;
-- (void)setErrorStatus:(NSInteger)status forErrorType:(NSInteger)type;
-- (BOOL)isLampOn:(NSInteger)lampIndex;
-- (void)setOn:(BOOL)on forLamp:(NSInteger)lampIndex;
-- (NSInteger)cumulativeLightingTimeForLamp:(NSInteger)lampIndex;
-- (void)setCumulativeLightingTime:(NSInteger)time forLamp:(NSInteger)lampIndex;
+- (void)handlePowerCommand:(BOOL)on;
+- (void)handleInputSwitchWithType:(NSUInteger)type number:(NSUInteger)number;
 
 @end
