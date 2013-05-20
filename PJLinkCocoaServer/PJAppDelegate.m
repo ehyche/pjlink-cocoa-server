@@ -8,21 +8,35 @@
 
 #import "PJAppDelegate.h"
 #import "PJLinkServer.h"
+#import "PJProjector.h"
+#import "DDLog.h"
+#import "DDTTYLogger.h"
 
 @interface PJAppDelegate()
 {
     PJLinkServer* _server;
 }
 
-@property(nonatomic,readonly) PJLinkServer* server;
-
 @end
 
 @implementation PJAppDelegate
 
+- (PJLinkServer*) server {
+    if (_server == nil) {
+        _server = [[PJLinkServer alloc] init];
+    }
+
+    return _server;
+}
+
+- (PJProjector*)projector {
+    return [PJProjector sharedProjector];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+	[DDLog addLogger:[DDTTYLogger sharedInstance]];
 }
 
 - (IBAction)powerStatusSegmentedControlChanged:(id)sender {
@@ -145,13 +159,5 @@
 }
 
 #pragma mark - PJAppDelegate private methods
-
-- (PJLinkServer*) server {
-    if (_server == nil) {
-        _server = [[PJLinkServer alloc] init];
-    }
-
-    return _server;
-}
 
 @end

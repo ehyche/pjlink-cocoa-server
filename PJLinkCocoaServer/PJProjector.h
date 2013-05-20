@@ -12,24 +12,21 @@ enum {
     PJPowerStatusStandby,
     PJPowerStatusLampOn,
     PJPowerStatusCooling,
-    PJPowerStatusWarmUp,
-    NumPJPowerStatuses
+    PJPowerStatusWarmUp
 };
 
 enum {
-    PJInputTypeRGB,
-    PJInputTypeVideo,
-    PJInputTypeDigital,
-    PJInputTypeStorage,
-    PJInputTypeNetwork,
-    NumPJInputTypes
+    PJInputTypeRGB = 1,
+    PJInputTypeVideo = 2,
+    PJInputTypeDigital = 3,
+    PJInputTypeStorage = 4,
+    PJInputTypeNetwork = 5
 };
 
 enum {
     PJErrorStatusOK,
     PJErrorStatusWarning,
-    PJErrorStatusError,
-    NumPJErrorStatuses
+    PJErrorStatusError
 };
 
 enum {
@@ -38,8 +35,7 @@ enum {
     PJErrorTypeTemperature,
     PJErrorTypeCoverOpen,
     PJErrorTypeFilter,
-    PJErrorTypeOther,
-    NumPJErrorTypes
+    PJErrorTypeOther
 };
 
 NSString* const PJProjectorDidChangeNotification;

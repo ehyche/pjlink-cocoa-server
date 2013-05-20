@@ -8,7 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class PJLinkServer;
+@class PJProjector;
+
 @interface PJAppDelegate : NSObject <NSApplicationDelegate>
+
+@property(nonatomic,readonly) PJLinkServer* server;
+@property(nonatomic,readonly) PJProjector*  projector;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSSegmentedControl *powerStatusSegmentedControl;
