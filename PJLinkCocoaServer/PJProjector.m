@@ -90,6 +90,8 @@ const NSUInteger kMaxCumulativeLightingTime = 99999;
         }
     } else {
         if (self.powerStatus == PJPowerStatusLampOn) {
+            // Transition to cool down
+            self.powerStatus = PJPowerStatusCooling;
             // When we are in lamp on status, and we get a power off,
             // then we transition to cooling down, and set a timer.
             // When the timer fires, we transtion to standby
