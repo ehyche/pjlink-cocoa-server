@@ -8,6 +8,8 @@
 
 #import "PJProjector.h"
 #import "PJLampStatus.h"
+#import "PJInputInfo.h"
+#import "PJErrorStatus.h"
 
 const NSUInteger kWarmUpTime = 30;
 const NSUInteger kCoolDownTime = 30;
@@ -22,6 +24,8 @@ const NSUInteger kMaxProductNameLength      = 32;
 const NSUInteger kMaxOtherInformationLength = 32;
 const NSUInteger kMaxCumulativeLightingTime = 99999;
 
+NSString* const PJProjectorErrorDomain = @"PJProjectorErrorDomain";
+
 @interface PJProjector()
 {
     NSTimer* _powerStatusTransitionTimer;
@@ -29,6 +33,7 @@ const NSUInteger kMaxCumulativeLightingTime = 99999;
 
 - (void)timerFired:(NSTimer*)timer;
 - (void)scheduleTimerWithTimeout:(NSTimeInterval)timeout;
++ (NSError*)errorWithCode:(NSInteger)code localizedDescription:(NSString*)description;
 
 @end
 
@@ -49,15 +54,21 @@ const NSUInteger kMaxCumulativeLightingTime = 99999;
     self = [super init];
     if (self) {
         _powerStatus = PJPowerStatusStandby;
-        _numberOfRGBInputs = 3;
-        _numberOfVideoInputs = 2;
-        _numberOfDigitalInputs = 3;
-        _numberOfStorageInputs = 1;
-        _numberOfNetworkInputs = 1;
+        _inputInfo = @[[PJInputInfo inputInfoWithName:@"RGB" numberOfInputs:3],
+                       [PJInputInfo inputInfoWithName:@"Video" numberOfInputs:2],
+                       [PJInputInfo inputInfoWithName:@"Digital" numberOfInputs:3],
+                       [PJInputInfo inputInfoWithName:@"Storage" numberOfInputs:1],
+                       [PJInputInfo inputInfoWithName:@"Network" numberOfInputs:1]];
         _inputType = PJInputTypeRGB;
         _inputNumber = 1;
         _audioMuted = NO;
         _videoMuted = NO;
+        _errorStatus = @[[PJErrorStatus errorStatusWithName:@"Fan"],
+                         [PJErrorStatus errorStatusWithName:@"Lamp"],
+                         [PJErrorStatus errorStatusWithName:@"Temperature"],
+                         [PJErrorStatus errorStatusWithName:@"Cover Open"],
+                         [PJErrorStatus errorStatusWithName:@"Filter"],
+                         [PJErrorStatus errorStatusWithName:@"Other"]];
         _fanError = PJErrorStatusOK;
         _lampError = PJErrorStatusOK;
         _temperatureError = PJErrorStatusOK;
@@ -65,7 +76,7 @@ const NSUInteger kMaxCumulativeLightingTime = 99999;
         _filterError = PJErrorStatusOK;
         _otherError = PJErrorStatusOK;
         _numberOfLamps = 1;
-        _lampStatuses = [NSArray arrayWithObject:[PJLampStatus lampStatus]];
+        _lampStatus = [NSArray arrayWithObject:[PJLampStatus lampStatus]];
         _projectorName = @"Projector1";
         _manufacturerName = @"Manufacturer1";
         _productName = @"CocoaPJLinkServer";
@@ -76,6 +87,30 @@ const NSUInteger kMaxCumulativeLightingTime = 99999;
     }
 
     return self;
+}
+
+- (NSUInteger)countOfInputInfo {
+    return [_inputInfo count];
+}
+
+- (id)objectInInputInfoAtIndex:(NSUInteger)index {
+    return [_inputInfo objectAtIndex:index];
+}
+
+- (NSUInteger)countOfErrorStatus {
+    return [_errorStatus count];
+}
+
+- (id)objectInErrorStatusAtIndex:(NSUInteger)index {
+    return [_errorStatus objectAtIndex:index];
+}
+
+- (NSUInteger)countOfLampStatus {
+    return [_lampStatus count];
+}
+
+- (id)objectInLampStatusAtIndex:(NSUInteger)index {
+    return [_lampStatus objectAtIndex:index];
 }
 
 - (void)handlePowerCommand:(BOOL)on {
@@ -105,6 +140,67 @@ const NSUInteger kMaxCumulativeLightingTime = 99999;
     self.inputNumber = number;
 }
 
+- (BOOL)validatePowerStatus:(id *)ioValue error:(NSError * __autoreleasing *)outError {
+    BOOL ret = NO;
+
+    if (ioValue != nil) {
+        id powerStatusId = *ioValue;
+        if ([powerStatusId isKindOfClass:[NSNumber class]]) {
+            NSUInteger powerStatus = [powerStatusId unsignedIntegerValue];
+            if (powerStatus <= PJPowerStatusWarmUp) {
+                ret = YES;
+            }
+        }
+    }
+    if (!ret && outError != NULL) {
+        *outError = [PJProjector errorWithCode:PJErrorCodeInvalidPowerStatus localizedDescription:@"Invalid value for power status. Power status must be 0-3."];
+    }
+
+    return ret;
+}
+
+- (BOOL)validateInputType:(id *)ioValue error:(NSError* __autoreleasing *)outError {
+    BOOL ret = NO;
+
+    if (ioValue != nil) {
+        id inputTypeId = *ioValue;
+        if ([inputTypeId isKindOfClass:[NSNumber class]]) {
+            NSUInteger inputType = [inputTypeId unsignedIntegerValue];
+            if (inputType >= PJInputTypeRGB && inputType <= PJInputTypeNetwork) {
+                ret = YES;
+            }
+        }
+    }
+    if (!ret && outError != NULL) {
+        *outError = [PJProjector errorWithCode:PJErrorCodeInvalidInputType localizedDescription:@"Invalid value for input type. Input type must be 1-5."];
+    }
+
+    return ret;
+}
+
+- (BOOL)validateInputNumber:(id *)ioValue error:(NSError* __autoreleasing *)outError {
+    BOOL ret = NO;
+
+    if (ioValue != nil) {
+        id inputNumId = *ioValue;
+        if ([inputNumId isKindOfClass:[NSNumber class]]) {
+            NSUInteger inputNum = [inputNumId unsignedIntegerValue];
+            // Get the number of inputs for the current input type
+            NSUInteger typeIndex = _inputType - 1;
+            PJInputInfo* info = [_inputInfo objectAtIndex:typeIndex];
+            if (inputNum >= 1 && inputNum <= info.numberOfInputs) {
+                ret = YES;
+            }
+        }
+    }
+    if (!ret && outError != NULL) {
+        *outError = [PJProjector errorWithCode:PJErrorCodeInvalidInputNumber localizedDescription:@"Invalid input number."];
+    }
+
+    return ret;
+}
+
+
 #pragma mark - PJProjector private methods
 
 - (void)timerFired:(NSTimer*)timer {
@@ -123,6 +219,11 @@ const NSUInteger kMaxCumulativeLightingTime = 99999;
                                                                  selector:@selector(timerFired:)
                                                                  userInfo:nil
                                                                   repeats:NO];
+}
+
++ (NSError*)errorWithCode:(NSInteger)code localizedDescription:(NSString*)description {
+    NSDictionary* userInfo = @{ NSLocalizedDescriptionKey : description };
+    return [NSError errorWithDomain:PJProjectorErrorDomain code:code userInfo:userInfo];
 }
 
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD3743C6174B1ED200EC953D /* PJInputInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3743C5174B1ED200EC953D /* PJInputInfo.m */; };
+		FD3743C9174B282D00EC953D /* PJErrorStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3743C8174B282D00EC953D /* PJErrorStatus.m */; };
 		FD590DEA173B567600D8EC2C /* PJProjector.m in Sources */ = {isa = PBXBuildFile; fileRef = FD590DE9173B567600D8EC2C /* PJProjector.m */; };
 		FD87C230173A06AC0087A6AE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD87C22F173A06AC0087A6AE /* Cocoa.framework */; };
 		FD87C23A173A06AC0087A6AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD87C238173A06AC0087A6AE /* InfoPlist.strings */; };
@@ -18,6 +20,7 @@
 		FD8E4BC4173E02B50087BF17 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8E4BC3173E02B50087BF17 /* GCDAsyncSocket.m */; };
 		FD8E4BC8173E0A670087BF17 /* PJLinkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8E4BC7173E0A670087BF17 /* PJLinkConnection.m */; };
 		FD8E4BCB173E0F420087BF17 /* PJLinkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8E4BCA173E0F420087BF17 /* PJLinkConfig.m */; };
+		FD9B8136174C68C800752A5C /* PJInputOption.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9B8135174C68C800752A5C /* PJInputOption.m */; };
 		FDA0C0881748878400D4CE53 /* DDAbstractDatabaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0C07F1748878400D4CE53 /* DDAbstractDatabaseLogger.m */; };
 		FDA0C0891748878400D4CE53 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0C0811748878400D4CE53 /* DDASLLogger.m */; };
 		FDA0C08A1748878400D4CE53 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA0C0831748878400D4CE53 /* DDFileLogger.m */; };
@@ -28,6 +31,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD3743C4174B1ED200EC953D /* PJInputInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJInputInfo.h; sourceTree = "<group>"; };
+		FD3743C5174B1ED200EC953D /* PJInputInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJInputInfo.m; sourceTree = "<group>"; };
+		FD3743C7174B282D00EC953D /* PJErrorStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJErrorStatus.h; sourceTree = "<group>"; };
+		FD3743C8174B282D00EC953D /* PJErrorStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJErrorStatus.m; sourceTree = "<group>"; };
 		FD590DE8173B567600D8EC2C /* PJProjector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJProjector.h; sourceTree = "<group>"; };
 		FD590DE9173B567600D8EC2C /* PJProjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJProjector.m; sourceTree = "<group>"; };
 		FD87C22C173A06AC0087A6AE /* PJLinkCocoaServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PJLinkCocoaServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +59,8 @@
 		FD8E4BC7173E0A670087BF17 /* PJLinkConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJLinkConnection.m; sourceTree = "<group>"; };
 		FD8E4BC9173E0F420087BF17 /* PJLinkConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJLinkConfig.h; sourceTree = "<group>"; };
 		FD8E4BCA173E0F420087BF17 /* PJLinkConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJLinkConfig.m; sourceTree = "<group>"; };
+		FD9B8134174C68C700752A5C /* PJInputOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJInputOption.h; sourceTree = "<group>"; };
+		FD9B8135174C68C800752A5C /* PJInputOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJInputOption.m; sourceTree = "<group>"; };
 		FDA0C07E1748878400D4CE53 /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDAbstractDatabaseLogger.h; path = ThirdParty/CocoaLumberjack/Lumberjack/DDAbstractDatabaseLogger.h; sourceTree = SOURCE_ROOT; };
 		FDA0C07F1748878400D4CE53 /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDAbstractDatabaseLogger.m; path = ThirdParty/CocoaLumberjack/Lumberjack/DDAbstractDatabaseLogger.m; sourceTree = SOURCE_ROOT; };
 		FDA0C0801748878400D4CE53 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDASLLogger.h; path = ThirdParty/CocoaLumberjack/Lumberjack/DDASLLogger.h; sourceTree = SOURCE_ROOT; };
@@ -136,6 +145,12 @@
 				FD8E4BCA173E0F420087BF17 /* PJLinkConfig.m */,
 				FDEC1D041745BA750014B3BA /* PJLampStatus.h */,
 				FDEC1D051745BA750014B3BA /* PJLampStatus.m */,
+				FD3743C4174B1ED200EC953D /* PJInputInfo.h */,
+				FD3743C5174B1ED200EC953D /* PJInputInfo.m */,
+				FD3743C7174B282D00EC953D /* PJErrorStatus.h */,
+				FD3743C8174B282D00EC953D /* PJErrorStatus.m */,
+				FD9B8134174C68C700752A5C /* PJInputOption.h */,
+				FD9B8135174C68C800752A5C /* PJInputOption.m */,
 			);
 			path = PJLinkCocoaServer;
 			sourceTree = "<group>";
@@ -265,6 +280,9 @@
 				FDA0C08A1748878400D4CE53 /* DDFileLogger.m in Sources */,
 				FDA0C08B1748878400D4CE53 /* DDLog.m in Sources */,
 				FDA0C08C1748878400D4CE53 /* DDTTYLogger.m in Sources */,
+				FD3743C6174B1ED200EC953D /* PJInputInfo.m in Sources */,
+				FD3743C9174B282D00EC953D /* PJErrorStatus.m in Sources */,
+				FD9B8136174C68C800752A5C /* PJInputOption.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
