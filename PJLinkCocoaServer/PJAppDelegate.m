@@ -11,6 +11,7 @@
 #import "PJProjector.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+#import "PJAMXBeaconSource.h"
 
 @interface PJAppDelegate()
 {
@@ -146,6 +147,7 @@
 
     if (self.server.isRunning) {
         [self.server stop];
+        [[PJAMXBeaconSource sharedSource] stop];
         self.startStopButton.title = @"Start Server";
     } else {
         NSError* startError = nil;
@@ -154,6 +156,11 @@
             self.startStopButton.title = @"Stop Server";
         } else {
             NSLog(@"Error starting server = %@", startError);
+        }
+        NSError* beaconStartError = nil;
+        result = [[PJAMXBeaconSource sharedSource] start:&beaconStartError];
+        if (!result) {
+            NSLog(@"Error starting AMX Beacon source, error = %@", beaconStartError);
         }
     }
 }

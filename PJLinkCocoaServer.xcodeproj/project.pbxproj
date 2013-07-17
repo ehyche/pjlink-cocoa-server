@@ -10,6 +10,8 @@
 		FD3743C6174B1ED200EC953D /* PJInputInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3743C5174B1ED200EC953D /* PJInputInfo.m */; };
 		FD3743C9174B282D00EC953D /* PJErrorStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3743C8174B282D00EC953D /* PJErrorStatus.m */; };
 		FD590DEA173B567600D8EC2C /* PJProjector.m in Sources */ = {isa = PBXBuildFile; fileRef = FD590DE9173B567600D8EC2C /* PJProjector.m */; };
+		FD5C90651794F954003365C7 /* PJAMXBeaconSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5C90641794F954003365C7 /* PJAMXBeaconSource.m */; };
+		FD5C90681794FA51003365C7 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5C90671794FA51003365C7 /* GCDAsyncUdpSocket.m */; };
 		FD87C230173A06AC0087A6AE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD87C22F173A06AC0087A6AE /* Cocoa.framework */; };
 		FD87C23A173A06AC0087A6AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD87C238173A06AC0087A6AE /* InfoPlist.strings */; };
 		FD87C23C173A06AC0087A6AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD87C23B173A06AC0087A6AE /* main.m */; };
@@ -37,6 +39,10 @@
 		FD3743C8174B282D00EC953D /* PJErrorStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJErrorStatus.m; sourceTree = "<group>"; };
 		FD590DE8173B567600D8EC2C /* PJProjector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJProjector.h; sourceTree = "<group>"; };
 		FD590DE9173B567600D8EC2C /* PJProjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJProjector.m; sourceTree = "<group>"; };
+		FD5C90631794F954003365C7 /* PJAMXBeaconSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJAMXBeaconSource.h; sourceTree = "<group>"; };
+		FD5C90641794F954003365C7 /* PJAMXBeaconSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJAMXBeaconSource.m; sourceTree = "<group>"; };
+		FD5C90661794FA51003365C7 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = ThirdParty/CocoaAsyncSocket/GCD/GCDAsyncUdpSocket.h; sourceTree = SOURCE_ROOT; };
+		FD5C90671794FA51003365C7 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = ThirdParty/CocoaAsyncSocket/GCD/GCDAsyncUdpSocket.m; sourceTree = SOURCE_ROOT; };
 		FD87C22C173A06AC0087A6AE /* PJLinkCocoaServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PJLinkCocoaServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD87C22F173A06AC0087A6AE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FD87C232173A06AC0087A6AE /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -151,6 +157,8 @@
 				FD3743C8174B282D00EC953D /* PJErrorStatus.m */,
 				FD9B8134174C68C700752A5C /* PJInputOption.h */,
 				FD9B8135174C68C800752A5C /* PJInputOption.m */,
+				FD5C90631794F954003365C7 /* PJAMXBeaconSource.h */,
+				FD5C90641794F954003365C7 /* PJAMXBeaconSource.m */,
 			);
 			path = PJLinkCocoaServer;
 			sourceTree = "<group>";
@@ -179,6 +187,8 @@
 		FD8E4BC1173E02980087BF17 /* CocoaAsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
+				FD5C90661794FA51003365C7 /* GCDAsyncUdpSocket.h */,
+				FD5C90671794FA51003365C7 /* GCDAsyncUdpSocket.m */,
 				FD8E4BC2173E02B50087BF17 /* GCDAsyncSocket.h */,
 				FD8E4BC3173E02B50087BF17 /* GCDAsyncSocket.m */,
 			);
@@ -283,6 +293,8 @@
 				FD3743C6174B1ED200EC953D /* PJInputInfo.m in Sources */,
 				FD3743C9174B282D00EC953D /* PJErrorStatus.m in Sources */,
 				FD9B8136174C68C800752A5C /* PJInputOption.m in Sources */,
+				FD5C90651794F954003365C7 /* PJAMXBeaconSource.m in Sources */,
+				FD5C90681794FA51003365C7 /* GCDAsyncUdpSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
