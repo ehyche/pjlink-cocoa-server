@@ -10,10 +10,10 @@
 
 @interface PJInputOption : NSObject
 
-@property(nonatomic,readonly) NSUInteger inputType;
-@property(nonatomic,readonly) NSUInteger inputNumber;
-@property(nonatomic,readonly) NSString*  name;
+@property(nonatomic,readonly)      NSUInteger inputType;
+@property(nonatomic,readonly)      NSUInteger inputNumber;
+@property(nonatomic,readonly,copy) NSString*  name;
 
-+ (PJInputOption*)inputOptionWithType:(NSUInteger)type number:(NSUInteger)number;
++ (PJInputOption*)inputOptionWithType:(NSUInteger)type number:(NSUInteger)number name:(NSString*)name;
 
 @end

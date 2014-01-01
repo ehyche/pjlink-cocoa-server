@@ -14,4 +14,11 @@
     return [[PJLampStatus alloc] init];
 }
 
++ (PJLampStatus*)lampStatusWithState:(BOOL)lampOn hours:(NSUInteger)hours {
+    PJLampStatus* ret = [[PJLampStatus alloc] init];
+    ret.on = lampOn;
+    ret.cumulativeLightingHours = hours;
+    return ret;
+}
+
 @end

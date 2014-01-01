@@ -13,6 +13,6 @@
 @property(nonatomic,assign,getter=isOn) BOOL       on;
 @property(nonatomic,assign)             NSUInteger cumulativeLightingHours;
 
-+ (PJLampStatus*)lampStatus;
++ (PJLampStatus*)lampStatusWithState:(BOOL)lampOn hours:(NSUInteger)hours;
 
 @end

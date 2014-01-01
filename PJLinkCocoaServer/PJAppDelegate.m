@@ -12,6 +12,7 @@
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 #import "PJAMXBeaconSource.h"
+#import "PJInputOption.h"
 
 @interface PJAppDelegate()
 {
@@ -38,10 +39,19 @@
 {
     // Insert code here to initialize your application
 	[DDLog addLogger:[DDTTYLogger sharedInstance]];
+    // Clear out the popup button content
+    [self.inputsPopUpButton removeAllItems];
+    // Populate the popup button
+    NSUInteger inputsCount = [self.projector countOfInputs];
+    for (NSUInteger i = 0; i < inputsCount; i++) {
+        PJInputOption* ithInputOption = (PJInputOption*)[self.projector objectInInputsAtIndex:i];
+        [self.inputsPopUpButton addItemWithTitle:ithInputOption.name];
+    }
 }
 
 - (IBAction)powerStatusSegmentedControlChanged:(id)sender {
     NSLog(@"powerStatusSegmentedControlChanged:%@", sender);
+    self.projector.powerStatus = self.powerStatusSegmentedControl.selectedSegment;
 }
 
 - (IBAction)inputTypeSegmentedControlChanged:(id)sender {

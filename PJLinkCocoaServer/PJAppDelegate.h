@@ -17,6 +17,7 @@
 @property(nonatomic,readonly) PJProjector*  projector;
 
 @property (assign) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSPopUpButton* inputsPopUpButton;
 @property (weak) IBOutlet NSSegmentedControl *powerStatusSegmentedControl;
 @property (weak) IBOutlet NSSegmentedControl *inputTypeSegmentedControl;
 @property (weak) IBOutlet NSSegmentedControl *inputNumberSegmentedControl;

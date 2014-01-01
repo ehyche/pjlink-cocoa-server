@@ -4,8 +4,8 @@
 #import "PJLinkLogging.h"
 #import "PJLinkConfig.h"
 #import "PJProjector.h"
-#import "PJInputInfo.h"
 #import "PJLampStatus.h"
+#import "PJInputOption.h"
 
 #if ! __has_feature(objc_arc)
 #warning This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -215,7 +215,15 @@ static NSArray* g_validCommands = nil;
                         if ([requestCommand isEqualToString:@"POWR"]) {
                             responseStr = [NSString stringWithFormat:@"%%1POWR=%lu\r", (unsigned long)projector.powerStatus];
                         } else if ([requestCommand isEqualToString:@"INPT"]) {
-                            responseStr = [NSString stringWithFormat:@"%%1INPT=%lu%lu\r", (unsigned long)projector.inputType, (unsigned long)projector.inputNumber];
+                            // Get the selected input
+                            NSUInteger inputType   = PJInputTypeRGB;
+                            NSUInteger inputNumber = 1;
+                            if (projector.activeInputIndex < [projector countOfInputs]) {
+                                PJInputOption* inputOption = (PJInputOption*)[projector objectInInputsAtIndex:projector.activeInputIndex];
+                                inputType   = inputOption.inputType;
+                                inputNumber = inputOption.inputNumber;
+                            }
+                            responseStr = [NSString stringWithFormat:@"%%1INPT=%lu%lu\r", (unsigned long)inputType, (unsigned long)inputNumber];
                         } else if ([requestCommand isEqualToString:@"AVMT"]) {
                             NSString* muteStr = @"30";
                             if (projector.isAudioMuted) {
@@ -235,26 +243,23 @@ static NSArray* g_validCommands = nil;
                                            (unsigned long)projector.filterError, (unsigned long)projector.otherError];
                         } else if ([requestCommand isEqualToString:@"LAMP"]) {
                             NSMutableString* lampStr = [NSMutableString string];
-                            NSArray* lampStatuses = projector.lampStatus;
-                            for (PJLampStatus* lampStatus in lampStatuses) {
+                            NSUInteger lampStatusCount = [projector countOfLampStatus];
+                            for (NSUInteger i = 0; i < lampStatusCount; i++) {
+                                PJLampStatus* ithLampStatus = (PJLampStatus*)[projector objectInLampStatusAtIndex:i];
                                 if ([lampStr length] > 0) {
                                     [lampStr appendString:@" "];
                                 }
-                                [lampStr appendFormat:@"%lu %u", (unsigned long)lampStatus.cumulativeLightingHours, lampStatus.isOn];
+                                [lampStr appendFormat:@"%lu %u", (unsigned long)ithLampStatus.cumulativeLightingHours, ithLampStatus.isOn];
                             }
                             responseStr = [NSString stringWithFormat:@"%%1LAMP=%@\r", lampStr];
                         } else if ([requestCommand isEqualToString:@"INST"]) {
                             NSMutableString* inputStr = [NSMutableString string];
-                            NSArray* inputInfo = projector.inputInfo;
-                            NSUInteger numInputTypes = [inputInfo count];
-                            for (NSUInteger i = 0; i < numInputTypes; i++) {
-                                PJInputInfo* ithInputInfo = [inputInfo objectAtIndex:i];
-                                for (NSUInteger j = 0; j < ithInputInfo.numberOfInputs; j++) {
-                                    if ([inputStr length] > 0) {
-                                        [inputStr appendString:@" "];
-                                    }
-                                    [inputStr appendFormat:@"%lu%lu", (unsigned long) (i + 1), (unsigned long) (j + 1)];
+                            for (NSUInteger i = 0; i < [projector countOfInputs]; i++) {
+                                PJInputOption* ithInputOption = (PJInputOption*)[projector objectInInputsAtIndex:i];
+                                if ([inputStr length] > 0) {
+                                    [inputStr appendString:@" "];
                                 }
+                                [inputStr appendFormat:@"%lu%lu", (unsigned long) ithInputOption.inputType, (unsigned long) ithInputOption.inputNumber];
                             }
                             responseStr = [NSString stringWithFormat:@"%%1INST=%@\r", inputStr];
                         } else if ([requestCommand isEqualToString:@"NAME"]) {
@@ -291,28 +296,24 @@ static NSArray* g_validCommands = nil;
                             NSString* inputNumStr  = [requestStr substringWithRange:NSMakeRange(8, 1)];
                             NSUInteger inputType = [inputTypeStr integerValue];
                             NSUInteger inputNum  = [inputNumStr integerValue];
-                            if (inputType >= 1 && inputType <= 5) {
-                                if (inputNum < 1) {
-                                    // Invalid input number
-                                    responseStr = @"%1INPT=ERR2\r";
-                                } else {
-                                    BOOL validInputNum = YES;
-                                    NSUInteger inputInfoIndex = inputType - 1;
-                                    PJInputInfo* ithInputInfo = [projector.inputInfo objectAtIndex:inputInfoIndex];
-                                    if (inputNum > ithInputInfo.numberOfInputs) {
-                                        validInputNum = NO;
-                                    }
-                                    if (validInputNum) {
-                                        // Switch the project input type and number at the same time
-                                        [projector handleInputSwitchWithType:inputType number:inputNum];
-                                        // Successful response
-                                        responseStr = @"%1INPT=OK\r";
-                                    } else {
-                                        responseStr = @"%1INPT=ERR2\r";
-                                    }
+                            // Check if this is a valid input type and input number
+                            NSUInteger inputsCount = [projector countOfInputs];
+                            NSUInteger i = 0;
+                            for (i = 0; i < inputsCount; i++) {
+                                PJInputOption* ithInputOption = (PJInputOption*)[projector objectInInputsAtIndex:i];
+                                if (ithInputOption.inputType   == inputType &&
+                                    ithInputOption.inputNumber == inputNum) {
+                                    break;
                                 }
+                            }
+                            // Did we find a matching input?
+                            if (i < inputsCount) {
+                                // Switch inputs on the projector
+                                projector.activeInputIndex = i;
+                                // Successful response
+                                responseStr = @"%1INPT=OK\r";
                             } else {
-                                // Invalid input type
+                                // No matching input, so return the error string
                                 responseStr = @"%1INPT=ERR2\r";
                             }
                         } else if ([requestCommand isEqualToString:@"AVMT"]) {
