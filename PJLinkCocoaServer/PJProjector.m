@@ -10,6 +10,7 @@
 #import "PJLampStatus.h"
 #import "PJErrorStatus.h"
 #import "PJInputOption.h"
+#import <CommonCrypto/CommonDigest.h>
 
 const NSUInteger kWarmUpTime = 30;
 const NSUInteger kCoolDownTime = 30;
@@ -29,6 +30,7 @@ NSString* const PJProjectorErrorDomain = @"PJProjectorErrorDomain";
 @interface PJProjector()
 {
     NSTimer* _powerStatusTransitionTimer;
+    uint32_t _randomNumber;
 }
 
 @property(nonatomic,readwrite,copy) NSArray* inputs; // Array of PJInputOption's
@@ -130,6 +132,20 @@ NSString* const PJProjectorErrorDomain = @"PJProjectorErrorDomain";
     }
 }
 
+- (void)setUsePassword:(BOOL)usePassword {
+    if (_usePassword != usePassword) {
+        _usePassword = usePassword;
+        [self updatePassword];
+    }
+}
+
+- (void)setPassword:(NSString *)password {
+    if (![_password isEqualToString:password]) {
+        _password = [password copy];
+        [self updatePassword];
+    }
+}
+
 - (BOOL)validatePowerStatus:(id *)ioValue error:(NSError * __autoreleasing *)outError {
     BOOL ret = NO;
 
@@ -172,6 +188,47 @@ NSString* const PJProjectorErrorDomain = @"PJProjectorErrorDomain";
 + (NSError*)errorWithCode:(NSInteger)code localizedDescription:(NSString*)description {
     NSDictionary* userInfo = @{ NSLocalizedDescriptionKey : description };
     return [NSError errorWithDomain:PJProjectorErrorDomain code:code userInfo:userInfo];
+}
+
+- (uint32_t)generate32BitRandomInteger {
+    uint32_t rand = 0;
+
+    FILE* fp = fopen("/dev/random", "r");
+    if (fp != NULL) {
+        for (int i = 0; i < 4; i++) {
+            uint8_t randByte = fgetc(fp);
+            uint32_t randByteShifted = randByte << (i * 8);
+            rand |= randByteShifted;
+        }
+    }
+
+    return rand;
+}
+
+- (void)updatePassword {
+    if (_usePassword && [_password length] > 0) {
+        // Get a random number
+        _randomNumber = [self generate32BitRandomInteger];
+        // Concatenate the random number and the password
+        NSString* randomPlusPassword = [NSString stringWithFormat:@"%08x%@", _randomNumber, _password];
+        // Get UTF8 data for this
+        NSData* randomPlusPasswordData = [randomPlusPassword dataUsingEncoding:NSUTF8StringEncoding];
+        // Call CC_MD5 to do the hash
+        unsigned char md5Result[CC_MD5_DIGEST_LENGTH];
+        CC_MD5([randomPlusPasswordData bytes], [randomPlusPasswordData length], md5Result);
+        // Create a hex string from the MD5 data
+        NSMutableString* tmpStr = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH];
+        for (NSUInteger i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+            unsigned char ithChar = md5Result[i];
+            [tmpStr appendFormat:@"%02x", ithChar];
+        }
+        // Create a string from this hex string
+        _encryptedPassword = [NSString stringWithString:tmpStr];
+    } else {
+        // Password was cleared, so clear out random number and encrypted password
+        _randomNumber      = 0;
+        _encryptedPassword = nil;
+    }
 }
 
 @end

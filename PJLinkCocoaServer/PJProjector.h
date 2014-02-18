@@ -65,6 +65,8 @@ NSString* const PJProjectorDidChangeNotification;
 @property(nonatomic,assign)                     BOOL       class2Compatible;
 @property(nonatomic,assign)                     BOOL       usePassword;
 @property(nonatomic,copy)                       NSString*  password;
+@property(nonatomic,readonly,assign)            uint32_t   randomNumber;
+@property(nonatomic,readonly,copy)              NSString*  encryptedPassword;
 
 // KVC-compliant indexed accessor methods
 - (NSUInteger)countOfInputs;
